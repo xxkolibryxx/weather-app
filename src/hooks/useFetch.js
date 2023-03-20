@@ -1,38 +1,38 @@
-/* eslint-disable default-param-last */
-import { useCallback, useEffect, useState } from 'react';
-import api from '../api/api';
+import { useCallback, useEffect, useState } from 'react'
+import api from 'api/api'
 
-export function useFetch(url, method = 'get', config) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export function useFetch(url, config, skip = false, method = 'get') {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  const reFetch = useCallback(async () => {
+  const refetch = useCallback(async () => {
     try {
-      setLoading(true);
-      const response = await api[method](url, config || {});
-      setData(response.data);
+      setLoading(true)
+      const response = await api[method](url, config || {})
+      setData(response.data)
     } catch (err) {
-      setError(err);
+      setError(err)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
 
     return {
       data,
       loading,
       error,
-    };
-  }, [url, method, config]);
+    }
+  }, [url, method])
 
   useEffect(() => {
-    reFetch();
-  }, [reFetch]);
+    if (skip) return
+    refetch()
+  }, [refetch, skip])
 
   return {
     data,
     loading,
     error,
-    reFetch,
-  };
+    refetch,
+  }
 }

@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import languageReducer from './language/languageSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import weatherReducer from './weather/weatherSlice'
+import userInfoReducer from './userInfo/userInfoSlice'
 
 export const store = configureStore({
   reducer: {
-    language: languageReducer,
+    weather: weatherReducer,
+    userInfo: userInfoReducer,
   },
-});
+})

@@ -12,21 +12,15 @@ const Navigation = ({ onClose = () => {} }) => {
     <div className={clsx('d-flex flex-fill flex-column flex-lg-row justify-content-between')}>
       <Nav
         className={clsx(
-          'justify-content-center flex-fill align-items-start align-items-lg-center',
+          'justify-content-end flex-fill align-items-start align-items-lg-center',
           classes.navigationWrapper
         )}
       >
         <Link to="/" className={clsx('nav-link', linkClasses.link)} onClick={onClose}>
-          Home
+          Today
         </Link>
-        <Link to="/" className={clsx('nav-link', linkClasses.link)} onClick={onClose}>
-          5 days weather
-        </Link>
-        <Link to="/" className={clsx('nav-link', linkClasses.link)} onClick={onClose}>
-          7 days history
-        </Link>
-        <Link to="/" className={clsx('nav-link', linkClasses.link)} onClick={onClose}>
-          Find weather
+        <Link to="/five-days" className={clsx('nav-link', linkClasses.link)} onClick={onClose}>
+          5 days
         </Link>
       </Nav>
     </div>
